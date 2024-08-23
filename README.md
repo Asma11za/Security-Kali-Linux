@@ -49,3 +49,45 @@ map-sT 192.168.1.1
 
 - Scanning ports (open and close)
 - Opening of a closed port to an open port
+
+<h2> SQLmap </h2>
+
+| Command         | Usage                                                                          | Written as             |
+| --------------- | ------------------------------------------------------------------------------ | ---------------------- |
+| \--wizard       | Help new users by providing an interface to help to get familiar with the tool | sqlmap –wizard         |
+| \-u             | Include vulnerable query parameters in the target URL                          | sqlmap \-u             |
+| \--purge        | Used to clear the entire database folder                                       | sqlmap \-purge         |
+| \--dependencies | Used to detect any missing dependencies                                        | sqlmap\-\-dependencies |
+| \-d direct      | Used for the direct connection with the database                               | sqlmap\-d              |
+
+
+
+<h2> Hydra </h2>
+
+| Command | Usage                                                                | Written as |
+| ------- | -------------------------------------------------------------------- | ---------- |
+| crunch  | Generator used to specify the number of characters that will be used | $ crunch   |
+| \-p     | Used as a password list                                              | \-p        |
+| \-l     | Used as login                                                        | \-l        |
+
+Brutal force attack was used in this tool
+
+<img src="https://github.com/user-attachments/assets/626a6928-b50b-4f8d-89ff-abb99048c515" width="700">
+
+<h3>Password.text</h3>
+
+<img src="https://github.com/user-attachments/assets/a6db0504-d154-452f-8132-cec928ec752d" width="700">
+
+<img src="https://github.com/user-attachments/assets/0f02eaff-ab4e-448d-94c5-3d584f7a6f39" width="700">
+
+<h3>We selected User.text and Password.text and the chosen target which is ssh//71.46.236.250, a server port identified from Nmap. Nmap revealed open and closed ports. Despite the address being closed, we reopened it in Nmap, used Hydra to start the attack with the command below.</h3>
+
+The attack succeeded, and we retrieved passwords from the server ssh//71.46.236.250.
+
+<h3>We attempted to log in with the username “asma112” using Password.text, and Hydra started guessing the password. It tested the password “asma112” (the same as the username) and the reversed version “211amsa” until a match was found.</h3>
+
+<pre>Hydra -l user.text -p password.text ssh://71.46.236.250 -v</pre>
+
+<h3>We successfully opened the closed port ssh//71.46.236.250.</h3>
+
+<img src="https://github.com/user-attachments/assets/ab00865e-00bb-4b1c-9cf5-3098ac513445" width="700">
